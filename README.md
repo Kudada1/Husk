@@ -153,7 +153,7 @@ The same three checks run automatically on every push and pull request via the w
 
 5. **Add Remote Repository**:
    ```bash
-   git remote add origin <your-github-repo-url>
+   git remote add origin https://github.com/Kudada1/Husk.git
    ```
 
 6. **Push to GitHub**:
