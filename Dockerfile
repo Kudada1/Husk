@@ -2,7 +2,7 @@
 FROM node:20-alpine AS build
 
 # Set the working directory inside the container
-WORKDIR /makurumidze_elwin_ui_garden_build_checks
+WORKDIR /Storybook-main
 
 # Copy package.json and package-lock.json to the working directory
 COPY package.json package-lock.json ./
@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy the build output to the Nginx HTML directory
-COPY --from=build /makurumidze_elwin_ui_garden_build_checks/build /usr/share/nginx/html
+COPY --from=build /Storybook-main/build /usr/share/nginx/html
 
 # Copy custom nginx configuration to serve on port 8018
 RUN echo 'server { listen 8018; location / { root /usr/share/nginx/html; index index.html index.htm; try_files $uri $uri/ /index.html; } }' > /etc/nginx/conf.d/default.conf
