@@ -72,13 +72,39 @@
 
 This project enforces code quality via **Husky pre-commit hooks** and **GitHub Actions**.
 
-#### Pre-commit Hooks (Husky + lint-staged)
+#### Pre-commit Hooks (Husky)
 Every `git commit` automatically runs:
 1. **Prettier** — checks code formatting on staged files.
 2. **ESLint** — lints staged TypeScript/TSX files (zero warnings allowed).
 3. **Tests** — runs the full test suite in CI mode.
 
 If any check fails, the commit is blocked until the issues are resolved.
+
+#### Husky Setup and Usage
+1. **Install dependencies** (automatically runs Husky via `prepare`):
+   ```bash
+   npm install
+   ```
+
+2. **Initialize Husky manually** (if needed):
+   ```bash
+   npm run prepare
+   ```
+
+3. **Confirm pre-commit hook commands**:
+   ```bash
+   cat .husky/pre-commit
+   ```
+
+4. **Test Husky with an empty commit**:
+   ```bash
+   git add -A
+   git commit --allow-empty -m "test husky pre-commit"
+   ```
+
+5. **Expected result**:
+   - Husky runs `npm run format:check`, `npm run lint`, and `npm run test:ci`.
+   - If any command fails, the commit is blocked.
 
 #### Run Checks Manually
 ```bash
